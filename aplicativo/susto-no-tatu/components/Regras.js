@@ -44,7 +44,7 @@ export default function Regras({navigation, route}) {
 
   const ImageSize = styled.Image`
     width: 220px;
-    height: 200px;
+    height: 220px;
     top: 40px;
   `;
 
@@ -64,7 +64,7 @@ export default function Regras({navigation, route}) {
 
   const Tatu = styled.Image`
     width: 133px;
-    height: 90px;
+    height: 100px;
     padding: 10px;
   `;
 
@@ -93,7 +93,7 @@ export default function Regras({navigation, route}) {
   return (
     <Background>
     
-      <Title>{"Tapa no Tatu"}</Title>
+      <Title>{"Susto no Tatu"}</Title>
       <NormalText>{"Como jogar"}</NormalText>
       <SimpleParagraph>{"A cada rodada, você deve selecionar todos os tatus que estiverem acordados."}</SimpleParagraph>
 

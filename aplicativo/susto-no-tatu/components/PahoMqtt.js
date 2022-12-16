@@ -48,8 +48,14 @@ export function setMsg(topic, topics, msg) {
     case user+"/FimJog":
       topics.fimJog = msg;
       break;
+    case user+"/Reset":
+      topics.reset = msg;
+      break;
+    case user+"/GameRunning":
+      topics.gameRunning = msg;
+      break;
     default:
-      console.log("mensagem nao imcompativel!");
+      console.log("mensagem nao compativel!");
       break;
   }
   return topics;
@@ -69,7 +75,7 @@ function App({navigation}) {
     V0: "0",V1: "0",
     P0: "0", P1: "0", P2: "0", P3: "0", P4: "0", P5: "0", P6: "0",
     T0: "0", T1: "0", T2: "0", T3: "0", T4: "0", T5: "0",
-    fimJog: "0", client: null
+    fimJog: "0", reset: "0", gameRunning: "0", client: null
   };
 
   const [connectionStatus, setConnectionStatus] = React.useState(false);
@@ -104,8 +110,13 @@ function App({navigation}) {
 
     topicos.client.subscribe(user+"/FimJog");
 
+    topicos.client.subscribe(user+"/Reset");
+    topicos.client.subscribe(user+"/GameRunning");
+
     topicos.client.subscribe(user+"/Serial");
     setConnectionStatus(true);
+
+    publishMsg(topicos.client, user+"/Update", "1");
   }
   
   // called when the client loses its connection

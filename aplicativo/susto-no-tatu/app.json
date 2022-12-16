@@ -1,10 +1,11 @@
 {
   "expo": {
-    "name": "tapa-no-tatu",
-    "slug": "snack-27a32032-92d9-4e09-bc12-54b9473fcff3",
+    "name": "susto-no-tatu",
+    "slug": "snack-fdf541dd-4229-4ea1-8ecc-7900643c53ac",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",

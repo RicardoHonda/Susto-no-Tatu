@@ -4,24 +4,24 @@ import { NavigationContainer } from '@react-navigation/native';
 import styled from 'styled-components/native';
 import { COLORS } from './Colors.js';
 import { FullButton, EmptyButton, ButtonsContainer } from './Buttons.js';
-import { Title } from './Typography.js';
+import { Title , SimpleParagraph } from './Typography.js';
 import Paho from 'paho-mqtt';
 import { setMsg, publishMsg } from './PahoMqtt';
 
-export default function Inicial({navigation, route}) {
+export default function Ranking({navigation, route}) {
 
   const {
     V0,V1, Dif0, Dif1,
     P0, P1, P2, P3, P4, P5, P6,
     T0, T1, T2, T3, T4, T5,
-    fimJog, client
+    fimJog, reset, gameRunning, client
   }  = route.params;
 
   let tpcs = {
     V0,V1, Dif0, Dif1,
     P0, P1, P2, P3, P4, P5, P6,
     T0, T1, T2, T3, T4, T5,
-   fimJog, client,
+   fimJog, reset, gameRunning, client,
   };
 
   const [topicos, setTopicos] = React.useState(tpcs);
@@ -48,7 +48,7 @@ export default function Inicial({navigation, route}) {
 
   const ImageSize = styled.Image`
     width: 220px;
-    height: 200px;
+    height: 220px;
     top: 40px;
   `;
 
@@ -65,18 +65,17 @@ export default function Inicial({navigation, route}) {
 
   function changePage(nextPage){
     const newTopics = topicos;
-    // newTopics.client = client;
+    newTopics.client = client;
     navigation.navigate(nextPage, newTopics);
   }
 
   return (
     <Background>
-      <ImageSize source={require('../assets/TatuFechado.png')} />
-      <Title>{"Tapa no Tatu"}</Title>
+      <ImageSize source={require('../assets/TatuFechado_ajustado.png')} />
+      <Title>{"Ei, tem tatus dormindo!"}</Title>
+      <SimpleParagraph>{"Está procurando o ranking? Bom ele está em desenvolvimento ainda... Deixamos esse espaço pros tatus descansarem, então não incomode eles! \nEm breve o ranking será implementado ;)"}</SimpleParagraph>
       <ButtonsContainer>
-        <FullButton text={"Iniciar"} onPress={() => changePage("Dificuldade")}/>
-        <FullButton text={"Ranking"} onPress={() => changePage("Ranking")}/>
-        <FullButton text={"Regras"} onPress={() => changePage("Regras")}/>
+        <FullButton text={"Voltar"} onPress={() => changePage("Inicial")}/>
       </ButtonsContainer>
     </Background>
   );

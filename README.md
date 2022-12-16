@@ -3,9 +3,9 @@
 Repositório com os códigos desenvolvidos para o projeto Susto no Tatu, para a disciplina PCS3645 - Laboratório Digital II. 
 
 # 📁 Pastas
-- `aplicativo`: pasta destinada aos arquivos do aplicativo "Tapa no Tatu";
-- `mqtt_esp8266`: pasta com os arquivos .ino, para conexão via protocolo MQTT;
-- `vhdl`: pasta com as descrições VHDL do projeto.
+- `aplicativo`: pasta destinada aos arquivos do aplicativo, feito em React e desenvolvido na plataforma Expo;
+- `mqtt_esp8266`: pasta com os arquivos .ino, para conexão da placa FPGA e do aplicativo via protocolo MQTT;
+- `vhdl`: pasta com as descrições VHDL do projeto e o arquivo .qar, utilizado para sintetizar o projeto na placa FPGA.
 
 # 👥 Contribuidores
 

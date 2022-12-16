@@ -14,22 +14,39 @@ export default function Dificuldade({navigation, route}) {
     V0,V1, Dif0, Dif1,
     P0, P1, P2, P3, P4, P5, P6,
     T0, T1, T2, T3, T4, T5,
-    fimJog, client
+    fimJog, reset, gameRunning, client
   }  = route.params;
 
   let tpcs = {
     V0,V1, Dif0, Dif1,
     P0, P1, P2, P3, P4, P5, P6,
     T0, T1, T2, T3, T4, T5,
-   fimJog, client,
+   fimJog, reset, gameRunning, client,
   };
 
   const [topicos, setTopicos] = React.useState(tpcs);
+  const [isGameRunning, setIsGameRunning] = React.useState(tpcs.gameRunning);
+
+  React.useEffect(() => {
+    async function setValues() {
+      setIsGameRunning(topicos.gameRunning);
+    }
+    setValues();    
+    if (isGameRunning == "1"){
+      changePage("Jogo");
+    }
+  }, []);
 
   client.onMessageArrived = TIonMessageArrived;
 
   function TIonMessageArrived(message) {
     setTopicos(setMsg(message.destinationName, topicos, message.payloadString));
+    if(message.destinationName == "grupo1-bancadaA4/GameRunning")
+      setIsGameRunning(message.payloadString);
+      if (message.payloadString == "1"){
+        changePage("Jogo");
+      }
+    // setIsGameRunning(message.payloadString);
     console.log("DIF - onMessageArrived from "+message.destinationName+": "+message.payloadString);
   }
 
@@ -90,7 +107,7 @@ export default function Dificuldade({navigation, route}) {
           <EmptyButton text={"Difícil"} onPress={() => selectDificulty('1')}/>
           <BottomContainer/>
           <BottomContainer>
-            <SimpleButton text={"Voltar"} onPress={() => changePage("Inicial")}/>
+            <SimpleButton text={"Voltar"} onPress={() => setTimeout(() => changePage("Inicial"), 500)}/>
           </BottomContainer>
         </ButtonsContainer>
       </Background>

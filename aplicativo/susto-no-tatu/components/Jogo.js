@@ -5,8 +5,7 @@ import styled from 'styled-components/native';
 import { COLORS } from './Colors.js'
 import { WhiteEmptyButton, ButtonsContainer } from './Buttons.js'
 import { NormalText, SmallPontuation, EndNormalText, EndMainText, EndPontuation } from './Typography.js'
-import { setMsg, publishMsg } from './PahoMqtt';
-import Paho from 'paho-mqtt';
+import { setMsg, publishMsg } from './PahoMqtt'; 
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;
@@ -20,14 +19,14 @@ export default function Dificuldade({navigation, route}) {
     V0,V1, Dif0, Dif1,
     P0, P1, P2, P3, P4, P5, P6,
     T0, T1, T2, T3, T4, T5,
-    fimJog, client
+    fimJog, reset, gameRunning, client
   }  = route.params;
 
   let tpcs = {
     V0,V1, Dif0, Dif1,
     P0, P1, P2, P3, P4, P5, P6,
     T0, T1, T2, T3, T4, T5,
-    fimJog, client,
+    fimJog, reset, gameRunning, client,
   };
 
   const tatusImageDefalut = [
@@ -64,6 +63,8 @@ export default function Dificuldade({navigation, route}) {
     setHearts(getVida());
     setPontuation(getPontuation());
     setFimJogo(topicos.fimJog);
+    if(message.destinationName == "grupo1-bancadaA4/Reset" && message.payloadString == "1")
+      changePage("Inicial");
     let topic = message.destinationName;
     if(topic == "grupo1-bancadaA4/Serial"){
       setTatuStatus();
@@ -112,7 +113,7 @@ export default function Dificuldade({navigation, route}) {
 
   const Tatu = styled.Image`
     width: 133px;
-    height: 90px;
+    height: 100px;
     padding: 10px;
   `;
 
@@ -186,25 +187,13 @@ export default function Dificuldade({navigation, route}) {
 
         <Row>
           <HeartContainer>
-            <TouchableOpacity onPress={() => selectTatu(0)} onClick={() => console.log("oi")}>
-              <Tatu source={tatusImage[0]} />
-            </TouchableOpacity>
-          </HeartContainer>
-          <HeartContainer>
-            <TouchableOpacity onPress={() => selectTatu(1)}>
-              <Tatu source={tatusImage[1]} />
-            </TouchableOpacity>
-          </HeartContainer>
-        </Row>
-        <Row>
-          <HeartContainer>
-            <TouchableOpacity onPress={() => selectTatu(2)}>
-              <Tatu source={tatusImage[2]} />
-            </TouchableOpacity>
-          </HeartContainer>
-          <HeartContainer>
             <TouchableOpacity onPress={() => selectTatu(3)}>
               <Tatu source={tatusImage[3]} />
+            </TouchableOpacity>
+          </HeartContainer>
+          <HeartContainer>
+            <TouchableOpacity onPress={() => selectTatu(0)}>
+              <Tatu source={tatusImage[0]} />
             </TouchableOpacity>
           </HeartContainer>
         </Row>
@@ -215,8 +204,20 @@ export default function Dificuldade({navigation, route}) {
             </TouchableOpacity>
           </HeartContainer>
           <HeartContainer>
+            <TouchableOpacity onPress={() => selectTatu(1)}>
+              <Tatu source={tatusImage[1]} />
+            </TouchableOpacity>
+          </HeartContainer>
+        </Row>
+        <Row>
+          <HeartContainer>
             <TouchableOpacity onPress={() => selectTatu(5)}>
               <Tatu source={tatusImage[5]} />
+            </TouchableOpacity>
+          </HeartContainer>
+          <HeartContainer>
+            <TouchableOpacity onPress={() => selectTatu(2)}>
+              <Tatu source={tatusImage[2]} />
             </TouchableOpacity>
           </HeartContainer>
         </Row>
