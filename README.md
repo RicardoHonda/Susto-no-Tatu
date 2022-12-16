@@ -4,7 +4,8 @@ Repositório com os códigos desenvolvidos para o projeto Susto no Tatu, para a 
 
 # 📁 Pastas
 - `aplicativo`: pasta destinada aos arquivos do aplicativo, feito em React e desenvolvido na plataforma Expo;
-- `mqtt_esp8266`: pasta com os arquivos .ino, para conexão da placa FPGA e do aplicativo via protocolo MQTT;
+- `mqtt_esp8266`: pasta com os arquivos .ino, utilizado na placa ESP8266;
+- `PythonScripts`: pasta com scripts python para conexões utilizando o protocolo MQTT;
 - `vhdl`: pasta com as descrições VHDL do projeto e o arquivo .qar, utilizado para sintetizar o projeto na placa FPGA.
 
 # 👥 Contribuidores
